@@ -18,5 +18,5 @@ const JSONList = [
 {
     "Name": "崩坏3",
     "Avatar": "img/icon/崩坏3.png",
-    "List": []
+    "List": undefined
 }]
