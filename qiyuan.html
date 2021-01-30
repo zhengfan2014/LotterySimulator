@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache,must-revalidate">
+    <meta http-equiv="Cache" content="no-cache">
+    <link rel="stylesheet" href="./css/iview.css1">
+    <title>抽奖模拟器</title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css" />
+</head>
+
+<body class="mdui-appbar-with-toolbar">
+
+    <div class="mdui-appbar mdui-appbar-fixed mdui-color-teal">
+        <div class="mdui-toolbar">
+            <button mdui-drawer="{target: '#drawer',overlay:true}" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></button>
+            <a href="index.html" class="mdui-typo-headline">抽奖模拟器</a>
+            <a href="javascript:;" class="mdui-typo-title mdui-hidden-sm
+                    mdui-hidden-xs"><small>今天也是非气满满呢^_^</small></a>
+            <div class="mdui-toolbar-spacer"></div>
+            <button mdui-dialog="{target: '#settings'}" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">settings</i></button>
+            <a href="https://github.com/zhengfan2014" target="_blank"
+                class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-tooltip="{content: '作者：zhengfan2014'}">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 36 36"
+                    enable-background="new 0 0 36 36" xml:space="preserve" class="mdui-icon"
+                    style="width: 24px;height:24px;">
+                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#ffffff" d="M18,1.4C9,1.4,1.7,8.7,1.7,17.7c0,7.2,4.7,13.3,11.1,15.5
+                            c0.8,0.1,1.1-0.4,1.1-0.8c0-0.4,0-1.4,0-2.8c-4.5,1-5.5-2.2-5.5-2.2c-0.7-1.9-1.8-2.4-1.8-2.4c-1.5-1,0.1-1,0.1-1
+                            c1.6,0.1,2.5,1.7,2.5,1.7c1.5,2.5,3.8,1.8,4.7,1.4c0.1-1.1,0.6-1.8,1-2.2c-3.6-0.4-7.4-1.8-7.4-8.1c0-1.8,0.6-3.2,1.7-4.4
+                            c-0.2-0.4-0.7-2.1,0.2-4.3c0,0,1.4-0.4,4.5,1.7c1.3-0.4,2.7-0.5,4.1-0.5c1.4,0,2.8,0.2,4.1,0.5c3.1-2.1,4.5-1.7,4.5-1.7
+                            c0.9,2.2,0.3,3.9,0.2,4.3c1,1.1,1.7,2.6,1.7,4.4c0,6.3-3.8,7.6-7.4,8c0.6,0.5,1.1,1.5,1.1,3c0,2.2,0,3.9,0,4.5
+                            c0,0.4,0.3,0.9,1.1,0.8c6.5-2.2,11.1-8.3,11.1-15.5C34.3,8.7,27,1.4,18,1.4z"></path>
+                </svg>
+            </a>
+
+        </div>
+    </div>
+    <div class="mdui-row">
+        <div class="mdui-col-sm-2">
+        </div>
+        <div class="mdui-col-sm-8">
+
+
+
+            <div id="el" class="mdui-container-fluid">
+                <div class="mdui-drawer mdui-drawer-close mdui-drawer-full-height mdui-color-white" id="drawer">
+  <ul class="mdui-list">
+    <li class="mdui-list-item mdui-ripple" @click="show('home')">
+      <i class="mdui-icon material-icons" style="margin:0 10px">videogame_asset</i>
+      <div class="mdui-list-item-content">首页</div>
+    </li>
+    <li class="mdui-subheader">游戏</li>
+    <li v-for="(game,index) in jsonList" class="mdui-list-item mdui-ripple" @click="show(index)">
+    <div class="mdui-list-item-avatar"><img :src="game.Avatar"/></div>
+    <div class="mdui-list-item-content">{{game.Name}}</div>
+  </li>
+
+    
+    <li class="mdui-subheader">工具</li>
+    <a href="qiyuan.html" class="mdui-list-item mdui-ripple">
+      <i class="mdui-icon material-icons" style="margin:0 10px">videogame_asset</i>
+      <div class="mdui-list-item-content"> 祈愿计算器</div>
+    </a>
+
+  </ul>
+</div>
+
+                <h1>原神祈愿助手</h1>
+                <div class="mdui-card">
+  <div class="mdui-card-media">
+    <img :src="data.img"/>
+    <div class="mdui-card-media-covered">
+      <div class="mdui-card-primary">
+        <div class="mdui-card-primary-title">{{data.name}}</div>
+        <div class="mdui-card-primary-subtitle">2021-01-29</div>
+      </div>
+    </div>
+  </div>
+   <!-- 卡片的内容 -->
+  <div class="mdui-card-content">
+      <h3>数据纵览</h3>
+      <div class="mdui-row" style="text-align:center;">
+          <div class="mdui-col-md-2 mdui-col-xs-4"><div class="mdui-typo-display-1">{{Number(data.jueseupchi.length) + Number(data.wuqiupchi.length) + Number(data.changzhuchi.length) + Number(data.xinshouchi5xingshu)}}</div><p>已获五星</p></div>
+          <div class="mdui-col-md-2 mdui-col-xs-4"><div class="mdui-typo-display-1">{{Number(data.jueseup) + Number(data.wuqiup) + Number(data.changzhu) + Number(data.xinshou8zhe)}}</div><p>已抽总数</p></div>
+          <div class="mdui-col-md-2 mdui-col-xs-4"><div class="mdui-typo-display-1">{{( Number(Math.max.apply(Math, data.jueseupchi.map(function(o) {return o.num}))) + Number(Math.max.apply(Math, data.wuqiupchi.map(function(o) {return o.num}))) + Number(Math.max.apply(Math, data.changzhuchi.map(function(o) {return o.num}))) )/(       Number(data.jueseupchi.length) + Number(data.wuqiupchi.length) + Number(data.changzhuchi.length) + Number(data.xinshouchi5xingshu))}}</div><p>平均一金</p></div>
+          <div class="mdui-col-md-2 mdui-col-xs-4"><div class="mdui-typo-display-1">{{Math.floor(Number(data.yuanshi)/160)}}</div><p>原石抽数</p></div>
+          <div class="mdui-col-md-2 mdui-col-xs-4"><div class="mdui-typo-display-1">{{Number(data.jiuchanzhiyuan)}}</div><p>纠缠之缘</p></div>
+          <div class="mdui-col-md-2 mdui-col-xs-4"><div class="mdui-typo-display-1">{{Number(data.xiangyuzhiyuan)}}</div><p>相遇之缘</p></div>
+      </div>
+      
+      
+      <h3>我的五星</h3>
+      <div class="mdui-row" style="text-align:center;">
+          <div class="mdui-col-md-4">
+              <div class="mdui-row">
+                  <div class="mdui-col-xs-6"><div class="mdui-typo-display-1">{{Number(data.jueseup)-Number(Math.max.apply(Math, data.jueseupchi.map(function(o) {return o.num})))}}</div><p>角色池已垫</p></div>
+                  <div class="mdui-col-xs-6"><div class="mdui-typo-display-1">{{Number(data.jueseup)-Number(Math.max.apply(Math, data.jueseupchi.map(function(o) {return o.num}))) + Number(data.jiuchanzhiyuan) + Math.floor(Number(data.yuanshi)/160)}}/90</div><p>最大进度</p></div>
+              </div>
+              <div class="mdui-progress">
+                  <div class="mdui-progress-determinate" :style="{width: (((Number(data.jueseup)-Number(Math.max.apply(Math, data.jueseupchi.map(function(o) {return o.num}))) + Number(data.jiuchanzhiyuan) + Math.floor(Number(data.yuanshi)/160))/90)*100) + '%'}"></div>
+              </div>
+              <br>
+          </div>
+          <div class="mdui-col-md-4">
+              <div class="mdui-row">
+                  <div class="mdui-col-xs-6"><div class="mdui-typo-display-1">{{Number(data.wuqiup)-Number(Math.max.apply(Math, data.wuqiupchi.map(function(o) {return o.num})))}}</div><p>武器池已垫</p></div>
+                  <div class="mdui-col-xs-6"><div class="mdui-typo-display-1">{{Number(data.wuqiup)-Number(Math.max.apply(Math, data.wuqiupchi.map(function(o) {return o.num}))) + Number(data.jiuchanzhiyuan) + Math.floor(Number(data.yuanshi)/160)}}/80</div><p>最大进度</p></div>
+              </div>
+              <div class="mdui-progress">
+                  <div class="mdui-progress-determinate" :style="{width: (((Number(data.wuqiup)-Number(Math.max.apply(Math, data.wuqiupchi.map(function(o) {return o.num}))) + Number(data.jiuchanzhiyuan) + Math.floor(Number(data.yuanshi)/160))/80)*100) + '%'}"></div>
+              </div>
+              <br>
+          </div>
+          <div class="mdui-col-md-4">
+              <div class="mdui-row">
+                  <div class="mdui-col-xs-6"><div class="mdui-typo-display-1">{{Number(data.changzhu)-Number(Math.max.apply(Math, data.changzhuchi.map(function(o) {return o.num})))}}</div><p>常驻池已垫</p></div>
+                  <div class="mdui-col-xs-6"><div class="mdui-typo-display-1">{{Number(data.changzhu)-Number(Math.max.apply(Math, data.changzhuchi.map(function(o) {return o.num}))) + Number(data.xiangyuzhiyuan) + Math.floor(Number(data.yuanshi)/160)}}/90</div><p>最大进度</p></div>
+              </div>
+              <div class="mdui-progress">
+                  <div class="mdui-progress-determinate" :style="{width: (((Number(data.changzhu)-Number(Math.max.apply(Math, data.changzhuchi.map(function(o) {return o.num}))) + Number(data.xiangyuzhiyuan) + Math.floor(Number(data.yuanshi)/160))/90)*100) + '%'}"></div>
+              </div>
+              <br>
+          </div>
+      </div>
+      
+  </div>
+
+
+</div>
+
+
+<div id="settings" class="mdui-dialog">
+  <div class="mdui-dialog-title">设置</div>
+  <div class="mdui-dialog-content">
+      <br>
+      <h3 style="margin-bottom:0">常规</h3>
+      <div class="mdui-textfield mdui-textfield-floating-label">
+          <label class="mdui-textfield-label">玩家呢称</label>
+          <input class="mdui-textfield-input" type="text" v-model="data.name" :value="data.name"/>
+      </div>
+      <div class="mdui-textfield mdui-textfield-floating-label">
+          <label class="mdui-textfield-label">背景图片(HTTP/HTTPS直链)</label>
+          <input class="mdui-textfield-input" type="text" v-model="data.img" :value="data.img"/>
+      </div>
+      <br>
+      <h3 style="margin-bottom:0">已抽总数</h3>
+      <div class="mdui-textfield mdui-textfield-floating-label">
+          <label class="mdui-textfield-label">角色UP池</label>
+          <input class="mdui-textfield-input" type="text" pattern="\d+" v-model="data.jueseup" :value="data.jueseup"/>
+          <div class="mdui-textfield-error">团长，你在输什么啊团长>_<</div>
+      </div>
+      <div class="mdui-textfield mdui-textfield-floating-label">
+          <label class="mdui-textfield-label">武器UP池</label>
+          <input class="mdui-textfield-input" type="text" pattern="\d+" v-model="data.wuqiup" :value="data.wuqiup"/>
+          <div class="mdui-textfield-error">团长，你在输什么啊团长>_<</div>
+      </div>
+      <div class="mdui-textfield mdui-textfield-floating-label">
+          <label class="mdui-textfield-label">常驻池</label>
+          <input class="mdui-textfield-input" type="text" pattern="\d+" v-model="data.changzhu" :value="data.changzhu"/>
+          <div class="mdui-textfield-error">团长，你在输什么啊团长>_<</div>
+      </div>
+      <div class="mdui-textfield mdui-textfield-floating-label">
+          <label class="mdui-textfield-label">新手8折池</label>
+          <input class="mdui-textfield-input" type="text" pattern="\d+" v-model="data.xinshou8zhe" :value="data.xinshou8zhe"/>
+          <div class="mdui-textfield-error">团长，你在输什么啊团长>_<</div>
+      </div>
+      <br>
+      <h3 style="margin-bottom:0">持有数量</h3>
+      <div class="mdui-textfield mdui-textfield-floating-label">
+          <label class="mdui-textfield-label">原石</label>
+          <input class="mdui-textfield-input" type="text" pattern="\d+" v-model="data.yuanshi" :value="data.yuanshi"/>
+          <div class="mdui-textfield-error">团长，你在输什么啊团长>_<</div>
+      </div>
+      <div class="mdui-textfield mdui-textfield-floating-label">
+          <label class="mdui-textfield-label">纠缠之缘</label>
+          <input class="mdui-textfield-input" type="text" pattern="\d+" v-model="data.jiuchanzhiyuan" :value="data.jiuchanzhiyuan"/>
+          <div class="mdui-textfield-error">团长，你在输什么啊团长>_<</div>
+      </div>
+      <div class="mdui-textfield mdui-textfield-floating-label">
+          <label class="mdui-textfield-label">相遇之缘</label>
+          <input class="mdui-textfield-input" type="text" pattern="\d+" v-model="data.xiangyuzhiyuan" :value="data.xiangyuzhiyuan"/>
+          <div class="mdui-textfield-error">团长，你在输什么啊团长>_<</div>
+      </div>
+      <div class="mdui-textfield mdui-textfield-floating-label">
+          <label class="mdui-textfield-label">新手池五星数</label>
+          <input class="mdui-textfield-input" type="text" pattern="\d+" v-model="data.xinshouchi5xingshu" :value="data.xinshouchi5xingshu"/>
+          <div class="mdui-textfield-error">团长，你在输什么啊团长>_<</div>
+      </div>
+      <br>
+      <h3 style="margin-bottom:0">我的五星</h3>
+      <h4>角色池</h4>
+      <div class="mdui-table-fluid">
+  <table class="mdui-table">
+    <thead>
+      <tr>
+        <th>第几抽</th>
+        <th>五星物品名</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(table,index) in data.jueseupchi">
+        <td><input class="mdui-textfield-input" type="text" v-model="table.num" :value="table.num"/></td>
+        <td><input class="mdui-textfield-input" type="text" v-model="table.name" :value="table.name"/></td>
+        <td><button class="mdui-btn mdui-color-red mdui-ripple" @click="del('jueseupchi',index)">删除</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br>
+<button class="mdui-btn mdui-color-blue mdui-ripple" @click="push('jueseupchi')">新增</button>
+
+
+<h4>武器池</h4>
+      <div class="mdui-table-fluid">
+  <table class="mdui-table">
+    <thead>
+      <tr>
+        <th>第几抽</th>
+        <th>五星物品名</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(table,index) in data.wuqiupchi">
+        <td><input class="mdui-textfield-input" type="text" v-model="table.num" :value="table.num"/></td>
+        <td><input class="mdui-textfield-input" type="text" v-model="table.name" :value="table.name"/></td>
+        <td><button class="mdui-btn mdui-color-red mdui-ripple" @click="del('wuqiupchi',index)">删除</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br>
+<button class="mdui-btn mdui-color-blue mdui-ripple">新增</button>
+
+
+
+<h4>常驻池</h4>
+      <div class="mdui-table-fluid">
+  <table class="mdui-table">
+    <thead>
+      <tr>
+        <th>第几抽</th>
+        <th>五星物品名</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(table,index) in data.changzhuchi">
+        <td><input class="mdui-textfield-input" type="text" v-model="table.num" :value="table.num"/></td>
+        <td><input class="mdui-textfield-input" type="text" v-model="table.name" :value="table.name"/></td>
+        <td><button class="mdui-btn mdui-color-red mdui-ripple" @click="del('changzhuchi',index)">删除</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br>
+<button class="mdui-btn mdui-color-blue mdui-ripple">新增</button>
+
+
+
+<br>
+      <h3 style="margin-bottom:0">FBI Warring</h3>
+      <button class="mdui-btn mdui-color-red mdui-ripple" @click="clear()">恢复默认设置</button>
+  </div>
+  <div class="mdui-dialog-actions">
+    <button class="mdui-btn mdui-ripple" mdui-dialog-close>关闭</button>
+    <button class="mdui-btn mdui-ripple" @click="ok" mdui-dialog-confirm>保存</button>
+  </div>
+</div>
+
+
+            </div>
+            <br>
+            <br>
+
+
+        </div>
+        <div class="mdui-col-sm-2">
+        </div>
+    </div>
+
+
+
+    <style>
+        .doc-footer-nav-text {
+            box-sizing: border-box;
+            display: inline-block;
+            font-size: 20px;
+            font-weight: 500;
+            -webkit-font-smoothing: antialiased;
+            height: 100%;
+            line-height: 24px;
+            padding-top: 24px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .doc-footer-nav-text .doc-footer-nav-direction {
+            font-size: 15px;
+            line-height: 18px;
+            margin-bottom: 1px;
+            opacity: 0.55;
+        }
+
+        .doc-footer-nav {
+            height: 130px;
+        }
+    </style>
+    <div class="doc-footer-nav mdui-color-teal">
+        <div class="mdui-container">
+            <div class="mdui-row">
+                <div class="doc-footer-nav-text">
+
+                    <span class="doc-footer-nav-chapter">2021 抽奖模拟器</span>
+                </div>
+                <div class="doc-footer-nav-text">
+                    <span class="doc-footer-nav-direction">最终解释权归 假面骑士02所有</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="js/public.js?version=1.0"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="js/iview.min.js"></script>
+    <script>
+        const vue = new Vue({
+            el: "#el",
+            data: {
+                jsonList: JSONList,
+                data:{}
+            },
+            methods: {
+                show:function(id){
+                    
+                    if(id=="home"){
+                        sessionStorage.isHome = true;
+                        sessionStorage.isGame = false;
+                        //console.log(this.jsonList);
+                    }else{
+                        sessionStorage.isHome = false;
+                        sessionStorage.isGame = true;
+                        sessionStorage.isGameId = parseInt(id);
+                    }
+                    window.location.href = "./index.html"
+                },
+                init:function(){
+                    if(!localStorage["原神祈愿助手"]){
+                        localStorage["原神祈愿助手"] = JSON.stringify({
+                            "name":"小丑阿贝多",
+                            "img":"img/qiyuan/1.jpg",
+                            "jueseup":170,
+                            "wuqiup":43,
+                            "changzhu":94,
+                            "xinshou8zhe":20,
+                            "yuanshi":10800,
+                            "jiuchanzhiyuan":0,
+                            "xiangyuzhiyuan":0,
+                            "xinshouchi5xingshu":1,
+                            "jueseupchi":[{"num":81,"name":"温迪"},{"num":161,"name":"甘雨"}],
+                            "wuqiupchi":[{"num":26,"name":"四风原典"}],
+                            "changzhuchi":[{"num":80,"name":"七七"}]
+                        })
+                    }
+                    this.data = JSON.parse(localStorage["原神祈愿助手"])
+                    //console.log(this.data)
+                },
+                ok:function(){
+                    //console.log(this.data)
+                    localStorage["原神祈愿助手"] = JSON.stringify(this.data)
+                },
+                push:function(name){
+                    if(name==="jueseupchi"){
+                        var pool = this.data.jueseupchi
+                    }
+                    if(name==="wuqiupchi"){
+                        var pool = this.data.wuqiupchi
+                    }
+                    if(name==="changzhuchi"){
+                        var pool = this.data.changzhuchi
+                    }
+                    pool.push({"num":666,"name":"阿贝多"})
+                },
+                del:function(name,id){
+                    console.log("w");
+                    if(name==="jueseupchi"){
+                        var pool = this.data.jueseupchi
+                    }
+                    if(name==="wuqiupchi"){
+                        var pool = this.data.wuqiupchi
+                    }
+                    if(name==="changzhuchi"){
+                        var pool = this.data.changzhuchi
+                    }
+                    pool = pool.splice(id, 1);
+                    
+                    console.log("www");
+                    console.log(color);
+                },
+                clear:function(){
+                    localStorage.removeItem("原神祈愿助手");
+                    this.init()
+                }
+            },
+            created() {
+                this.init()
+            }
+        })
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"></script>
+</body>
+
+</html>

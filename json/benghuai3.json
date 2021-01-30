@@ -1,0 +1,240 @@
+{
+    "Title": "家园补给",
+    "Author": "zhengfan2014",
+    "Link":"https://afdian.net/@zhengfan2014",
+    "Avatar":"https://zhengfan2014.github.io/images/avatar.png",
+    "Description": "eoeoedl",
+    "Rmb":20,
+    "PrizeImg":"img/genshin/changzhuqiyuan.png",
+    "Baodi":true,
+    "BaodiList":[
+        {
+            "Name":"S级保底",
+            "Frequency":100,
+            "Range":[0]
+        },
+        {
+            "Name":"A级保底",
+            "Frequency":10,
+            "Range":[2]
+        }
+    ],
+    "Type":["角色","武器"],
+    "Prize": [
+        {
+            "Name": "S级女武神",
+            "Style":"mdui-color-amber-accent",
+            "Probability": 0.015,
+            "CallBack":"S级保底",
+            "PrizeList":[
+                {
+                    "Name":"真红骑士·月蚀",
+                    "Avatar":"img/bh3/wiki/100px-真红骑士·月蚀头像.png",
+                    "Type":"角色",
+                    "Description":""
+                },
+                {
+                    "Name":"异度黑核侵蚀",
+                    "Avatar":"img/bh3/wiki/100px-异度黑核侵蚀头像.png",
+                    "Type":"角色",
+                    "Description":""
+                },
+                {
+                    "Name":"影骑士·月轮",
+                    "Avatar":"img/bh3/wiki/100px-影骑士·月轮头像.png",
+                    "Type":"角色",
+                    "Description":""
+                },
+                {
+                    "Name":"神恩颂歌",
+                    "Avatar":"img/bh3/wiki/100px-神恩颂歌头像.png",
+                    "Type":"角色",
+                    "Description":""
+                },
+                {
+                    "Name":"第六夜想曲",
+                    "Avatar":"img/bh3/wiki/100px-第六夜想曲头像.png",
+                    "Type":"角色",
+                    "Description":""
+                },
+                {
+                    "Name":"御神装·勿忘",
+                    "Avatar":"img/bh3/wiki/100px-御神装·勿忘头像.png",
+                    "Type":"角色",
+                    "Description":""
+                },
+                {
+                    "Name":"炽翎",
+                    "Avatar":"img/bh3/wiki/100px-炽翎头像.png",
+                    "Type":"角色",
+                    "Description":""
+                },
+                {
+                    "Name":"雷电女王的鬼铠",
+                    "Avatar":"img/bh3/wiki/100px-雷电女王的鬼铠头像.png",
+                    "Type":"角色",
+                    "Description":""
+                },
+                {
+                    "Name":"白骑士·月光",
+                    "Avatar":"img/bh3/wiki/100px-白骑士·月光头像.png",
+                    "Type":"角色",
+                    "Description":""
+                },
+                {
+                    "Name":"空之律者",
+                    "Avatar":"img/bh3/wiki/100px-空之律者头像.png",
+                    "Type":"角色",
+                    "Description":""
+                },
+                {
+                    "Name":"处刑装·紫苑",
+                    "Avatar":"img/bh3/wiki/100px-处刑装·紫苑头像.png",
+                    "Type":"角色",
+                    "Description":""
+                },
+                {
+                    "Name":"血色玫瑰",
+                    "Avatar":"img/bh3/wiki/100px-血色玫瑰头像.png",
+                    "Type":"角色",
+                    "Description":""
+                },
+                {
+                    "Name":"次元边界突破",
+                    "Avatar":"img/bh3/wiki/100px-次元边界突破头像.png",
+                    "Type":"角色",
+                    "Description":""
+                }
+            ]
+        },
+        {
+            "Name": "S级女武神碎片",
+            "Probability": 0.0277,
+            "PrizeList":[
+                {
+                    "Name":"S级女武神碎片",
+                    "Avatar":"",
+                    "Type":"碎片",
+                    "Description":""
+                }
+            ]
+        },
+        {
+            "Name": "A级女武神",
+            "Style":"mdui-color-deep-purple-400",
+            "Probability": 0.1627,
+            "CallBack":"A级保底",
+            "PrizeList":[
+                {
+                    "Name":"次元边界突破",
+                    "Avatar":"img/bh3/wiki/100px-次元边界突破头像.png",
+                    "Type":"角色",
+                    "Description":""
+                }
+            ]
+        },
+        {
+            "Name": "A级女武神碎片",
+            "Probability": 0.2646,
+            "PrizeList":[
+                {
+                    "Name":"A级女武神碎片",
+                    "Avatar":"",
+                    "Type":"碎片",
+                    "Description":""
+                }
+            ]
+        },
+        {
+            "Name": "B级女武神",
+            "Probability": 0.3196,
+            "PrizeList":[
+                {
+                    "Name":"弹弓",
+                    "Avatar":"img/genshin/wiki/150px-弹弓.png",
+                    "Type":"武器",
+                    "Description":""
+                }
+            ]
+        },
+        {
+            "Name": "4星武器",
+            "Probability": 0.3242,
+            "PrizeList":[
+                {
+                    "Name":"弹弓",
+                    "Avatar":"img/genshin/wiki/150px-弹弓.png",
+                    "Type":"武器",
+                    "Description":""
+                }
+            ]
+        },
+        {
+            "Name": "4星圣痕",
+            "Probability": 0.3315,
+            "PrizeList":[
+                {
+                    "Name":"弹弓",
+                    "Avatar":"img/genshin/wiki/150px-弹弓.png",
+                    "Type":"武器",
+                    "Description":""
+                }
+            ]
+        },
+        {
+            "Name": "3星武器",
+            "Probability": 0.4065,
+            "PrizeList":[
+                {
+                    "Name":"弹弓",
+                    "Avatar":"img/genshin/wiki/150px-弹弓.png",
+                    "Type":"武器",
+                    "Description":""
+                }
+            ]
+        },
+        {
+            "Name": "3星圣痕",
+            "Probability": 0.6315,
+            "PrizeList":[
+                {
+                    "Name":"弹弓",
+                    "Avatar":"img/genshin/wiki/150px-弹弓.png",
+                    "Type":"武器",
+                    "Description":""
+                }
+            ]
+        },
+        {
+            "Name": "进化材料",
+            "Probability": 0.7789,
+            "PrizeList":[
+                {
+                    "Name":"弹弓",
+                    "Avatar":"img/genshin/wiki/150px-弹弓.png",
+                    "Type":"武器",
+                    "Description":""
+                }
+            ]
+        },
+        {
+            "Name": "角色经验",
+            "Probability": 0.9263,
+            "PrizeList":[
+                {
+                    "Name":"弹弓",
+                    "Avatar":"img/genshin/wiki/150px-弹弓.png",
+                    "Type":"武器",
+                    "Description":""
+                }
+            ]
+        },
+        {
+            "Name": "金币道具",
+            "Probability": 1,
+            "Avatar":"img/genshin/wiki/150px-弹弓.png",
+            "Type":"武器",
+            "Description":""
+        }
+    ]
+}
